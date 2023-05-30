@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import WelcomePage from './components/pages/WelcomePage/WelcomePage';
+import UsersPage from './components/pages/UsersPage/UsersPage';
+import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
+import UserInfoPage from './components/pages/UserInfoPage/UserInfoPage';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/users" element={<UsersPage />} />
+        <Route path="/user/:id" element={<UserInfoPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
