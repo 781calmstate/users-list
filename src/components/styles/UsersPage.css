@@ -1,0 +1,155 @@
+.userspage {
+  width: 1300px;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+.addBtn {
+  color: rgb(136, 10, 136);
+  background-color: #fff;
+  border: 1px solid rgb(214, 140, 214);
+  border-radius: 2px;
+  padding: 7px 15px;
+  margin-bottom: 20px;
+  transition: 0.6s;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: rgb(214, 140, 214);
+  color: #fff;
+}
+.searchAndSort {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input {
+  display: flex;
+  width: 40%;
+  position: relative;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input__field {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 19px;
+  border: none;
+  transition: 0.2s;
+  box-shadow: inset 0 0 5px rgb(214, 140, 214);
+}
+
+.input__field:focus {
+  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.5);
+  outline: none;
+}
+
+.input__field:hover {
+  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.7);
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.users-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eeebeb;
+  border: none;
+  border-radius: 3px;
+  padding: 15px 30px;
+  box-shadow: inset 0 0 8px rgba(214, 140, 214, 0.4);
+}
+
+.item__id {
+  font-weight: 600;
+  width: 50px;
+}
+
+.item__name {
+  font-weight: 600;
+  text-align: left;
+  width: 300px;
+}
+
+.item__username {
+  font-weight: 600;
+  text-align: left;
+  width: 300px;
+}
+
+.item__buttons {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.item__button {
+  font-size: 17px;
+  border-radius: 2px;
+  padding: 7px 10px;
+  height: 40px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button__about {
+  color: green;
+  border: 1px solid green;
+  transition: 0.5s;
+}
+
+.button__about:hover {
+  background-color: green;
+  color: white;
+}
+
+.button__edit {
+  color: goldenrod;
+  border: 1px solid goldenrod;
+  transition: 0.5s;
+}
+
+.button__edit:hover {
+  background-color: goldenrod;
+  color: white;
+}
+
+.button__delete {
+  color: rgb(190, 17, 17);
+  border: 1px solid rgb(190, 17, 17);
+  transition: 0.5s;
+}
+
+.button__delete:hover {
+  background-color: rgb(190, 17, 17);
+  color: white;
+}
+
+.prevpage {
+  position: fixed;
+  bottom: 30px;
+  left: 65px;
+}
+
+.prevpage::after {
+  content: '';
+  display: inline-block;
+  margin-top: 0.5em;
+  margin-right: -0.3em;
+  width: 1.4em;
+  height: 1.4em;
+  border-top: 0.5em solid #6e6d6d;
+  border-right: 0.5em solid #6e6d6d;
+  -moz-transform: rotate(225deg);
+  -webkit-transform: rotate(225deg);
+  transform: rotate(225deg);
+}
