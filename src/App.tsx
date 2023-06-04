@@ -1,10 +1,13 @@
 import React from 'react';
+
 import { Route, Routes } from 'react-router-dom';
-import './components/styles/App.css';
-import WelcomePage from './components/pages/WelcomePage/WelcomePage';
-import UsersPage from './components/pages/UsersPage/UsersPage';
-import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
-import UserInfoPage from './components/pages/UserInfoPage/UserInfoPage';
+
+import WelcomePage from './pages/WelcomePage/WelcomePage';
+import UsersPage from './pages/UsersPage/UsersPage';
+import UserInfoPage from './pages/UserInfoPage/UserInfoPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+
+import './styles/App.css';
 
 const App: React.FC = () => {
   return (

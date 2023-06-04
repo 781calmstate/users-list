@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
-import { User } from '../../types/model';
+
 import { Link } from 'react-router-dom';
-import '../styles/UsersPage.css';
+
+import { User } from '../../types/model';
 
 type Props = {
   user: User;
+  setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
+  setId: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const UserItem: React.FC<Props> = ({ user }) => {
+const UserItem: React.FC<Props> = ({ user, setIsDeleting, setId }) => {
   const [isEdited, setIsEdited] = useState(false);
   const { id, name, username } = user;
+
+  const handleDelete = (id: number) => {
+    setIsDeleting(true);
+
+    setId(id);
+  };
 
   return (
     <div className={`users-list__item ${isEdited ? 'edited' : ''}`}>
@@ -25,7 +34,12 @@ const UserItem: React.FC<Props> = ({ user }) => {
           About
         </Link>
         <button className="item__button button__edit">Edit</button>
-        <button className="item__button button__delete">Delete</button>
+        <button
+          className="item__button button__delete"
+          onClick={() => handleDelete(id)}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

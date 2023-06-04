@@ -1,8 +1,11 @@
 import React from 'react';
-import contentImage from '../../../img/background/welcome.jpg';
-import usersImage from '../../../img/icons/users.png';
-import '../../styles/WelcomePage.css';
+
 import { Link } from 'react-router-dom';
+
+import contentImage from '../../img/background/welcome.jpg';
+import usersImage from '../../img/icons/users.png';
+
+import '../../styles/WelcomePage.css';
 
 const WelcomePage: React.FC = () => {
   return (
