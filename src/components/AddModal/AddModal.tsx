@@ -5,13 +5,13 @@ type Props = {
   addUser: (e: React.FormEvent, newUser: User) => void;
   newUser: User;
   setIsAdding: React.Dispatch<React.SetStateAction<boolean>>;
-  handleModalChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAddChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const AddModal: React.FC<Props> = ({
   addUser,
   setIsAdding,
-  handleModalChange,
+  handleAddChange,
   newUser,
 }) => {
   return (
@@ -26,7 +26,7 @@ const AddModal: React.FC<Props> = ({
               type="text"
               name="name"
               className="modal__inputField"
-              onChange={handleModalChange}
+              onChange={handleAddChange}
             />
           </label>
           <label htmlFor="username" className="modal__label">
@@ -36,7 +36,7 @@ const AddModal: React.FC<Props> = ({
               type="text"
               name="username"
               className="modal__inputField"
-              onChange={handleModalChange}
+              onChange={handleAddChange}
             />
           </label>
         </form>

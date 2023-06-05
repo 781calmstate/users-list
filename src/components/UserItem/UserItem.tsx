@@ -6,18 +6,35 @@ import { User } from '../../types/model';
 
 type Props = {
   user: User;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
   setId: React.Dispatch<React.SetStateAction<string>>;
+  setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
 };
 
-const UserItem: React.FC<Props> = ({ user, setIsDeleting, setId }) => {
+const UserItem: React.FC<Props> = ({
+  user,
+  setIsEditing,
+  setIsDeleting,
+  setId,
+  setCurrentUser,
+}) => {
   const [isEdited, setIsEdited] = useState(false);
+
   const { id, name, username } = user;
 
-  const handleDelete = (id: string) => {
+  const handleDeleteClick = (id: string) => {
     setIsDeleting(true);
 
     setId(id);
+  };
+
+  const handleEditClick = (id: string, user: User) => {
+    setIsEditing(true);
+
+    setId(id);
+    setCurrentUser(user);
+    setIsEdited(true);
   };
 
   return (
@@ -33,10 +50,15 @@ const UserItem: React.FC<Props> = ({ user, setIsDeleting, setId }) => {
         >
           About
         </Link>
-        <button className="item__button button__edit">Edit</button>
+        <button
+          className="item__button button__edit"
+          onClick={() => handleEditClick(id, user)}
+        >
+          Edit
+        </button>
         <button
           className="item__button button__delete"
-          onClick={() => handleDelete(id)}
+          onClick={() => handleDeleteClick(id)}
         >
           Delete
         </button>

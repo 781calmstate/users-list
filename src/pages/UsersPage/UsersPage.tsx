@@ -22,6 +22,11 @@ const UsersPage: React.FC = () => {
     name: 'Elizabeth Grande',
     username: 'Eliza',
   });
+  const [currentUser, setCurrentUser] = useState<User>({
+    id: '',
+    name: '',
+    username: '',
+  });
 
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -63,11 +68,25 @@ const UsersPage: React.FC = () => {
     setIsAdding(false);
   };
 
+  const editUser = (e: React.FormEvent, currentUser: User, id: string) => {
+    e.preventDefault();
+
+    setUsers(
+      users.map((user) =>
+        Number(user.id) === Number(id)
+          ? { ...user, name: currentUser.name, username: currentUser.username }
+          : user
+      )
+    );
+
+    setIsEditing(false);
+  };
+
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, query: e.target.value });
   };
 
-  const handleModalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAddChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     if (value === ' ') {
@@ -75,6 +94,19 @@ const UsersPage: React.FC = () => {
     }
 
     setNewUser((prev) => ({
+      ...prev,
+      [e.target.name]: typeof value === 'string' ? value : +value,
+    }));
+  };
+
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    if (value === ' ') {
+      return;
+    }
+
+    setCurrentUser((prev) => ({
       ...prev,
       [e.target.name]: typeof value === 'string' ? value : +value,
     }));
@@ -97,6 +129,8 @@ const UsersPage: React.FC = () => {
         setFilter={setFilter}
       />
       <UserList
+        setCurrentUser={setCurrentUser}
+        setIsEditing={setIsEditing}
         sortedAndSearched={sortedAndSearched}
         setIsDeleting={setIsDeleting}
         setId={setId}
@@ -109,10 +143,19 @@ const UsersPage: React.FC = () => {
           addUser={addUser}
           newUser={newUser}
           setIsAdding={setIsAdding}
-          handleModalChange={handleModalChange}
+          handleAddChange={handleAddChange}
         />
       )}
-      {isEditing && <EditModal id={id} />}
+      {isEditing && (
+        <EditModal
+          editUser={editUser}
+          id={id}
+          setIsEditing={setIsEditing}
+          users={users}
+          currentUser={currentUser}
+          handleEditChange={handleEditChange}
+        />
+      )}
       {isDeleting && (
         <DeleteModal
           id={id}
