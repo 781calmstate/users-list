@@ -47,16 +47,20 @@ const UsersPage: React.FC = () => {
 
     const maxId = [...users].sort((p1, p2) => Number(p2.id) - Number(p1.id))[0]
       .id;
+    const numberId = Number(maxId);
 
     if (newUser) {
       setUsers([
         ...users,
-        { id: `${maxId + 1}`, name: newUser.name, username: newUser.username },
+        {
+          id: `${numberId + 1}`,
+          name: newUser.name,
+          username: newUser.username,
+        },
       ]);
     }
     setNewUser({ id: '0', name: 'Elizabeth Grande', username: 'Eliza' });
     setIsAdding(false);
-    console.log(users);
   };
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
