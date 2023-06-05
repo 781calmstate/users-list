@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { User } from '../../types/model';
 
 type Props = {
-  id: number;
+  id: string;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
   users: User[];
   setUsers: React.Dispatch<React.SetStateAction<User[]>>;

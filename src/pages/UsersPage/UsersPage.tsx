@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { User } from '../../types/model';
+import { Filter, User } from '../../types/model';
+
+import { useUsers } from '../../hooks/useUsers';
 
 import AddModal from '../../components/AddModal/AddModal';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
@@ -15,14 +17,17 @@ import '../../styles/UsersPage.css';
 const UsersPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   // const [user, setUser] = useState<User>({ id: 0, name: '', username: '' });
-  const [filter, setFilter] = useState<string>('');
+
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [id, setId] = useState(0);
+  const [id, setId] = useState('0');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+  const [filter, setFilter] = useState<Filter>({ query: '', sort: '' });
+  const sortedAndSearched = useUsers(users, filter.query, filter.sort);
+
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter({ ...filter, query: e.target.value });
   };
 
   const handleModalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,17 +55,16 @@ const UsersPage: React.FC = () => {
     dataFetch();
   }, []);
 
-  useEffect(() => {
-    console.log(
-      users.filter((user) => {
-        return filter
-          ? user.name.toLowerCase().includes(filter) ||
-              user.username.toLowerCase().includes(filter)
-          : true;
-      })
-    );
-    console.log(users);
-  }, [filter, users]);
+  // useEffect(() => {
+  //   setUsers(
+  //     users.filter((user) => {
+  //       return filter
+  //         ? user.name.toLowerCase().includes(filter.query.toLowerCase()) ||
+  //             user.username.toLowerCase().includes(filter.query.toLowerCase())
+  //         : users;
+  //     })
+  //   );
+  // }, [filter]);
   // const maxId = [...users].sort((p1, p2) => p2.id - p1.id)[0].id;
   return (
     <div className="userspage">
@@ -75,14 +79,25 @@ const UsersPage: React.FC = () => {
             type="input"
             className="input__field"
             placeholder="Enter a name"
-            value={filter}
-            onChange={handleChange}
+            value={filter.query}
+            onChange={handleQueryChange}
           />
         </form>
-        <SortingMenu />
+        <SortingMenu
+          value={filter.sort}
+          onChange={(selectedSort: string) =>
+            setFilter({ ...filter, sort: selectedSort })
+          }
+          defaultValue="Sort By"
+          options={[
+            { value: 'name', name: 'By name' },
+            { value: 'username', name: 'By username' },
+            { value: 'id', name: 'Descending' },
+          ]}
+        />
       </div>
       <div className="users-list">
-        {users.map((user) => (
+        {sortedAndSearched.map((user) => (
           <UserItem
             key={user.id}
             user={user}

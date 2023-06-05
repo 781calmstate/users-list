@@ -7,14 +7,14 @@ import { User } from '../../types/model';
 type Props = {
   user: User;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
-  setId: React.Dispatch<React.SetStateAction<number>>;
+  setId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const UserItem: React.FC<Props> = ({ user, setIsDeleting, setId }) => {
   const [isEdited, setIsEdited] = useState(false);
   const { id, name, username } = user;
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     setIsDeleting(true);
 
     setId(id);
