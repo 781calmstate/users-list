@@ -1,19 +1,16 @@
 import React from 'react';
 
+import { Filter } from '../../types/model';
+
 import SortingMenu from '../SortingMenu/SortingMenu';
-import { Filter, User } from '../../types/model';
 
 type Props = {
-  users: User[];
-  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
   filter: Filter;
   handleQueryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
 };
 
 const UserFilter: React.FC<Props> = ({
-  users,
-  setUsers,
   filter,
   handleQueryChange,
   setFilter,
@@ -31,8 +28,6 @@ const UserFilter: React.FC<Props> = ({
         />
       </form>
       <SortingMenu
-        users={users}
-        setUsers={setUsers}
         setFilter={setFilter}
         value={filter.sort}
         onChange={(selectedSort: string) =>

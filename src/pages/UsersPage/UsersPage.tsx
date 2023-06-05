@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import { Filter, User } from '../../types/model';
 
 import { useUsers } from '../../hooks/useUsers';
+
+import { UsersContext } from '../../context';
 
 import AddModal from '../../components/AddModal/AddModal';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
@@ -15,8 +17,8 @@ import UserList from '../../components/UserList/UserList';
 import '../../styles/UsersPage.css';
 
 const UsersPage: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  // const [user, setUser] = useState<User>({ id: 0, name: '', username: '' });
+  const [users, setUsers] = useContext(UsersContext);
+
   const [newUser, setNewUser] = useState<User>({
     id: '0',
     name: 'Elizabeth Grande',
@@ -72,7 +74,7 @@ const UsersPage: React.FC = () => {
     e.preventDefault();
 
     setUsers(
-      users.map((user) =>
+      users.map((user: User) =>
         Number(user.id) === Number(id)
           ? { ...user, name: currentUser.name, username: currentUser.username }
           : user
@@ -122,8 +124,6 @@ const UsersPage: React.FC = () => {
         Add User
       </button>
       <UserFilter
-        users={users}
-        setUsers={setUsers}
         filter={filter}
         handleQueryChange={handleQueryChange}
         setFilter={setFilter}
@@ -151,19 +151,11 @@ const UsersPage: React.FC = () => {
           editUser={editUser}
           id={id}
           setIsEditing={setIsEditing}
-          users={users}
           currentUser={currentUser}
           handleEditChange={handleEditChange}
         />
       )}
-      {isDeleting && (
-        <DeleteModal
-          id={id}
-          setIsDeleting={setIsDeleting}
-          users={users}
-          setUsers={setUsers}
-        />
-      )}
+      {isDeleting && <DeleteModal id={id} setIsDeleting={setIsDeleting} />}
     </div>
   );
 };

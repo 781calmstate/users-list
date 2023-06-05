@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { User } from '../../types/model';
+import { UsersContext } from '../../context';
 
 type Props = {
   editUser: (e: React.FormEvent, currentUser: User, id: string) => void;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
-  users: User[];
   currentUser: User;
   handleEditChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -14,11 +15,12 @@ const EditModal: React.FC<Props> = ({
   editUser,
   setIsEditing,
   id,
-  users,
   currentUser,
   handleEditChange,
 }) => {
-  const clickedUser = users.find((user) => user.id === id);
+  const users = useContext(UsersContext);
+
+  const clickedUser = users.find((user: User) => user.id === id);
 
   return (
     <div className="backshadow">

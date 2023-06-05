@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { BiFilterAlt } from 'react-icons/bi';
 
 import { Tooltip } from '@mui/material';
 
+import { UsersContext } from '../../context';
+
 import { Filter, Option, User } from '../../types/model';
 
 type Props = {
-  users: User[];
-  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
   value: string;
   onChange: (selectedSort: string) => void;
@@ -17,17 +17,17 @@ type Props = {
 };
 
 const SortingMenu: React.FC<Props> = ({
-  users,
-  setUsers,
   setFilter,
   value,
   onChange,
   defaultValue,
   options,
 }) => {
+  const [users, setUsers] = useContext(UsersContext);
+
   const handleResetClick = () => {
     setFilter({ query: '', sort: '' });
-    setUsers(users.sort((a, b) => Number(a.id) - Number(b.id)));
+    setUsers(users.sort((a: User, b: User) => Number(a.id) - Number(b.id)));
   };
 
   return (

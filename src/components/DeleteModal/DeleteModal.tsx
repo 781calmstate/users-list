@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { UsersContext } from '../../context';
+
 import { User } from '../../types/model';
 
 type Props = {
   id: string;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
-  users: User[];
-  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
 };
 
-const DeleteModal: React.FC<Props> = ({
-  setIsDeleting,
-  id,
-  users,
-  setUsers,
-}) => {
-  const currentUser = users.find((user) => user.id === id);
+const DeleteModal: React.FC<Props> = ({ setIsDeleting, id }) => {
+  const [users, setUsers] = useContext(UsersContext);
+
+  const currentUser = users.find((user: User) => user.id === id);
 
   const handleDelete = () => {
-    setUsers(users.filter((user) => user.id !== id));
+    setUsers(users.filter((user: User) => user.id !== id));
 
     setIsDeleting(false);
   };
