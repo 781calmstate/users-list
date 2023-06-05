@@ -64,8 +64,9 @@
 }
 
 .modal__inputField {
+  font-weight: 500;
   width: 100%;
-  padding: 4px;
+  padding: 7px;
   border: 1px solid rgb(214, 140, 214);
   border-radius: 2px;
 }
@@ -195,7 +196,6 @@
 
 .sorter__btn {
   position: absolute;
-  z-index: 50;
   border: none;
   background-color: #fff;
   cursor: pointer;

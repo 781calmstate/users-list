@@ -1,11 +1,19 @@
 import React from 'react';
+import { User } from '../../types/model';
 
 type Props = {
+  addUser: (e: React.FormEvent, newUser: User) => void;
+  newUser: User;
   setIsAdding: React.Dispatch<React.SetStateAction<boolean>>;
   handleModalChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const AddModal: React.FC<Props> = ({ setIsAdding, handleModalChange }) => {
+const AddModal: React.FC<Props> = ({
+  addUser,
+  setIsAdding,
+  handleModalChange,
+  newUser,
+}) => {
   return (
     <div className="backshadow">
       <div className="modal">
@@ -14,6 +22,7 @@ const AddModal: React.FC<Props> = ({ setIsAdding, handleModalChange }) => {
           <label htmlFor="name" className="modal__label">
             Name <br />
             <input
+              value={newUser.name}
               type="text"
               name="name"
               className="modal__inputField"
@@ -23,6 +32,7 @@ const AddModal: React.FC<Props> = ({ setIsAdding, handleModalChange }) => {
           <label htmlFor="username" className="modal__label">
             Username <br />
             <input
+              value={newUser.username}
               type="text"
               name="username"
               className="modal__inputField"
@@ -32,7 +42,12 @@ const AddModal: React.FC<Props> = ({ setIsAdding, handleModalChange }) => {
         </form>
         <div className="modal__footer">
           {' '}
-          <button className="saveBtn modal__footer-button">Save</button>
+          <button
+            className="saveBtn modal__footer-button"
+            onClick={(e) => addUser(e, newUser)}
+          >
+            Save
+          </button>
           <button
             className="cancelBtn modal__footer-button"
             onClick={() => setIsAdding(false)}
