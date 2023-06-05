@@ -170,7 +170,7 @@
 }
 
 .sorter {
-  width: 150px;
+  width: 170px;
   appearance: none;
   padding: 12px 14px;
   cursor: pointer;
@@ -193,9 +193,12 @@
   box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.7);
 }
 
-.sorter__icon {
+.sorter__btn {
   position: absolute;
   z-index: 50;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
   right: 10px;
   top: 14px;
 }

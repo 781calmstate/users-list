@@ -2,9 +2,12 @@ import React from 'react';
 
 import { BiFilterAlt } from 'react-icons/bi';
 
-import { Option } from '../../types/model';
+import { Tooltip } from '@mui/material';
+
+import { Filter, Option } from '../../types/model';
 
 type Props = {
+  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
   value: string;
   onChange: (selectedSort: string) => void;
   defaultValue: string;
@@ -12,11 +15,14 @@ type Props = {
 };
 
 const SortingMenu: React.FC<Props> = ({
+  setFilter,
   value,
   onChange,
   defaultValue,
   options,
 }) => {
+  const handleResetClick = () => setFilter({ query: '', sort: '' });
+
   return (
     <div className="sortingMenu">
       <select
@@ -37,9 +43,11 @@ const SortingMenu: React.FC<Props> = ({
           </option>
         ))}
       </select>
-      <span className="sorter__icon">
-        <BiFilterAlt />
-      </span>
+      <Tooltip title="Reset Filters" placement="top">
+        <button className="sorter__btn" onClick={handleResetClick}>
+          <BiFilterAlt />
+        </button>
+      </Tooltip>
     </div>
   );
 };

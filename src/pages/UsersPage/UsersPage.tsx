@@ -13,6 +13,8 @@ import SortingMenu from '../../components/SortingMenu/SortingMenu';
 import UserItem from '../../components/UserItem/UserItem';
 
 import '../../styles/UsersPage.css';
+import UserFilter from '../../components/UserFilter/UserFilter';
+import UserList from '../../components/UserList/UserList';
 
 const UsersPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -25,6 +27,17 @@ const UsersPage: React.FC = () => {
 
   const [filter, setFilter] = useState<Filter>({ query: '', sort: '' });
   const sortedAndSearched = useUsers(users, filter.query, filter.sort);
+
+  useEffect(() => {
+    const dataFetch = async () => {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users'
+      );
+      const data = await response.json();
+      setUsers(data);
+    };
+    dataFetch();
+  }, [filter]);
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, query: e.target.value });
@@ -43,69 +56,22 @@ const UsersPage: React.FC = () => {
   const showAddModal = () => {
     setIsAdding(true);
   };
-
-  useEffect(() => {
-    const dataFetch = async () => {
-      const response = await fetch(
-        'https://jsonplaceholder.typicode.com/users'
-      );
-      const data = await response.json();
-      setUsers(data);
-    };
-    dataFetch();
-  }, []);
-
-  // useEffect(() => {
-  //   setUsers(
-  //     users.filter((user) => {
-  //       return filter
-  //         ? user.name.toLowerCase().includes(filter.query.toLowerCase()) ||
-  //             user.username.toLowerCase().includes(filter.query.toLowerCase())
-  //         : users;
-  //     })
-  //   );
-  // }, [filter]);
   // const maxId = [...users].sort((p1, p2) => p2.id - p1.id)[0].id;
   return (
     <div className="userspage">
       <button className="addBtn" onClick={showAddModal}>
         Add User
       </button>
-
-      <div className="searchAndSort">
-        {' '}
-        <form className="input">
-          <input
-            type="input"
-            className="input__field"
-            placeholder="Enter a name"
-            value={filter.query}
-            onChange={handleQueryChange}
-          />
-        </form>
-        <SortingMenu
-          value={filter.sort}
-          onChange={(selectedSort: string) =>
-            setFilter({ ...filter, sort: selectedSort })
-          }
-          defaultValue="Sort By"
-          options={[
-            { value: 'name', name: 'By name' },
-            { value: 'username', name: 'By username' },
-            { value: 'id', name: 'Descending' },
-          ]}
-        />
-      </div>
-      <div className="users-list">
-        {sortedAndSearched.map((user) => (
-          <UserItem
-            key={user.id}
-            user={user}
-            setIsDeleting={setIsDeleting}
-            setId={setId}
-          />
-        ))}
-      </div>
+      <UserFilter
+        filter={filter}
+        handleQueryChange={handleQueryChange}
+        setFilter={setFilter}
+      />
+      <UserList
+        sortedAndSearched={sortedAndSearched}
+        setIsDeleting={setIsDeleting}
+        setId={setId}
+      />
       <Link to="/users-list">
         <button className="nav-button prevpage"></button>
       </Link>
