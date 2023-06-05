@@ -4,9 +4,11 @@ import { BiFilterAlt } from 'react-icons/bi';
 
 import { Tooltip } from '@mui/material';
 
-import { Filter, Option } from '../../types/model';
+import { Filter, Option, User } from '../../types/model';
 
 type Props = {
+  users: User[];
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
   value: string;
   onChange: (selectedSort: string) => void;
@@ -15,13 +17,18 @@ type Props = {
 };
 
 const SortingMenu: React.FC<Props> = ({
+  users,
+  setUsers,
   setFilter,
   value,
   onChange,
   defaultValue,
   options,
 }) => {
-  const handleResetClick = () => setFilter({ query: '', sort: '' });
+  const handleResetClick = () => {
+    setFilter({ query: '', sort: '' });
+    setUsers(users.sort((a, b) => Number(a.id) - Number(b.id)));
+  };
 
   return (
     <div className="sortingMenu">

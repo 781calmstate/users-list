@@ -40,7 +40,7 @@ const UsersPage: React.FC = () => {
       setUsers(data);
     };
     dataFetch();
-  }, [filter]);
+  }, []);
 
   const addUser = (e: React.FormEvent, newUser: User) => {
     e.preventDefault();
@@ -56,6 +56,7 @@ const UsersPage: React.FC = () => {
     }
     setNewUser({ id: '0', name: 'Elizabeth Grande', username: 'Eliza' });
     setIsAdding(false);
+    console.log(users);
   };
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,6 +86,8 @@ const UsersPage: React.FC = () => {
         Add User
       </button>
       <UserFilter
+        users={users}
+        setUsers={setUsers}
         filter={filter}
         handleQueryChange={handleQueryChange}
         setFilter={setFilter}
