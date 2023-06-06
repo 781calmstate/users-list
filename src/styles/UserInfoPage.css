@@ -18,13 +18,25 @@
   font-weight: 700;
 }
 
-.header__btns {
+.header__NavBtns {
+  font-size: 20px;
+  color: rgb(136, 10, 136);
+  border: 1px solid rgb(214, 140, 214);
+  border-radius: 3px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.3);
+  transition: 0.4s;
 }
 
-.prevUser {
+.header__NavBtns:hover {
+  background-color: rgb(136, 10, 136);
+  color: #fff;
+  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.6);
 }
 
-.nextUser {
+.header__NavBtns .disabled {
 }
 
 /* Info */

@@ -14,11 +14,13 @@ import { User } from '../../types/model';
 import '../../styles/UserInfoPage.css';
 
 const UserInfoPage: React.FC = () => {
-  const [users, setUsers] = useContext(UsersContext);
+  const [users] = useContext(UsersContext);
 
   const { id } = useParams();
 
-  const user = users.find((user: User) => Number(user.id) === Number(id));
+  const userId = Number(id);
+
+  const user = users.find((user: User) => Number(user.id) === userId);
 
   const { name, username, email, phone, company } = user;
   const { city } = user.address;
@@ -32,15 +34,19 @@ const UserInfoPage: React.FC = () => {
     <section>
       <div className="userpage">
         <div className="userpage__header">
-          <button className="header__btns prevUser">
-            {/* <Link to> */}
+          <Link
+            to={`/users-list/users/${userId - 1}`}
+            className="header__NavBtns prevUser"
+          >
             <IoMdArrowBack />
-            {/* </Link> */}
-          </button>
+          </Link>
           <h1 className="header__title">{name}</h1>
-          <button className="header__btns nextUser">
+          <Link
+            to={`/users-list/users/${userId + 1}`}
+            className="header__NavBtns nextUser"
+          >
             <FiArrowRight />
-          </button>
+          </Link>
         </div>
         <div className="userpage__info">
           <p className="info__text">
