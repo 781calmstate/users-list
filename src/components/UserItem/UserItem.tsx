@@ -45,7 +45,7 @@ const UserItem: React.FC<Props> = ({
 
       <div className="item__buttons">
         <Link
-          to={`/users-list/user/${id}`}
+          to={`/users-list/users/${id}`}
           className="item__button button__about"
         >
           About

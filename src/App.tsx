@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/users-list" element={<WelcomePage />} />
           <Route path="/users-list/users" element={<UsersPage />} />
-          <Route path="/users-list/user/:id" element={<UserInfoPage />} />
+          <Route path="/users-list/users/:id" element={<UserInfoPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </UsersContext.Provider>
