@@ -40,11 +40,19 @@ const UsersPage: React.FC = () => {
 
   useEffect(() => {
     const dataFetch = async () => {
+      const usersData = JSON.parse(localStorage.getItem('usersData') || '[]');
+
+      if (usersData.length) {
+        setUsers(usersData);
+        return;
+      }
+      console.log(usersData, 'usersddatasdaqd12313');
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/users'
       );
       const data = await response.json();
       setUsers(data);
+      localStorage.setItem('usersData', JSON.stringify(data));
     };
     dataFetch();
   }, []);
@@ -57,30 +65,36 @@ const UsersPage: React.FC = () => {
     const numberId = Number(maxId);
 
     if (newUser) {
-      setUsers([
+      const newUsers = [
         ...users,
         {
           id: `${numberId + 1}`,
           name: newUser.name,
           username: newUser.username,
+          email: 'Sincere@april.biz',
+          phone: '1-770-736-8031 x56442',
+          company: { name: 'Hoeger LLC' },
+          address: { city: 'London' },
         },
-      ]);
+      ];
+      setUsers(newUsers);
+      localStorage.setItem('usersData', JSON.stringify(newUsers));
     }
     setNewUser({ id: '0', name: 'Elizabeth Grande', username: 'Eliza' });
+
     setIsAdding(false);
   };
 
   const editUser = (e: React.FormEvent, currentUser: User, id: string) => {
     e.preventDefault();
 
-    setUsers(
-      users.map((user: User) =>
-        Number(user.id) === Number(id)
-          ? { ...user, name: currentUser.name, username: currentUser.username }
-          : user
-      )
+    const editedUser = users.map((user: User) =>
+      Number(user.id) === Number(id)
+        ? { ...user, name: currentUser.name, username: currentUser.username }
+        : user
     );
-
+    setUsers(editedUser);
+    localStorage.setItem('usersData', JSON.stringify(editedUser));
     setIsEditing(false);
   };
 

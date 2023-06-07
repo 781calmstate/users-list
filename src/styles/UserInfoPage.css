@@ -36,7 +36,11 @@
   box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.6);
 }
 
-.header__NavBtns .disabled {
+.disabled {
+  color: red;
+  border: 1px solid red;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Info */
@@ -51,4 +55,8 @@
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 5px;
+}
+
+.userpage__returnBtn {
+  left: 15px;
 }
