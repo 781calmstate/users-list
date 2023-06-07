@@ -37,8 +37,9 @@
 }
 
 .disabled {
-  color: red;
-  border: 1px solid red;
+  background-color: initial;
+  color: #c42828;
+  border: 1px solid #c42828;
   cursor: not-allowed;
   pointer-events: none;
 }

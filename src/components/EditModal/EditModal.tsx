@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { User } from '../../types/model';
 import { UsersContext } from '../../context';
@@ -18,10 +18,13 @@ const EditModal: React.FC<Props> = ({
   currentUser,
   handleEditChange,
 }) => {
-  const users = useContext(UsersContext);
+  const [users] = useContext(UsersContext);
 
   const clickedUser = users.find((user: User) => user.id === id);
 
+  const isSaveDisabled =
+    currentUser.name.trim().length === 0 ||
+    currentUser.username.trim().length === 0;
   return (
     <div className="backshadow">
       <div className="modal">
@@ -36,6 +39,11 @@ const EditModal: React.FC<Props> = ({
               className="modal__inputField"
               onChange={handleEditChange}
             />
+            <div className="providerEror">
+              {currentUser.name.trim().length === 0
+                ? 'Please provide username'
+                : ''}
+            </div>
           </label>
           <label htmlFor="username" className="modal__label">
             Username <br />
@@ -46,12 +54,20 @@ const EditModal: React.FC<Props> = ({
               className="modal__inputField"
               onChange={handleEditChange}
             />
+            <div className="providerEror">
+              {currentUser.username.trim().length === 0
+                ? 'Please provide username'
+                : ''}
+            </div>
           </label>
         </form>
         <div className="modal__footer">
           {' '}
           <button
-            className="saveBtn modal__footer-button"
+            disabled={isSaveDisabled}
+            className={`saveBtn modal__footer-button ${
+              isSaveDisabled ? 'disabled' : ''
+            }`}
             onClick={(e) => editUser(e, currentUser, id)}
           >
             Save

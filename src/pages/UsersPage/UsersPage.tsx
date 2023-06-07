@@ -60,6 +60,13 @@ const UsersPage: React.FC = () => {
   const addUser = (e: React.FormEvent, newUser: User) => {
     e.preventDefault();
 
+    if (
+      newUser.name.trim().length === 0 ||
+      newUser.username.trim().length === 0
+    ) {
+      return;
+    }
+
     const maxId = [...users].sort((p1, p2) => Number(p2.id) - Number(p1.id))[0]
       .id;
     const numberId = Number(maxId);
@@ -88,6 +95,13 @@ const UsersPage: React.FC = () => {
   const editUser = (e: React.FormEvent, currentUser: User, id: string) => {
     e.preventDefault();
 
+    if (
+      currentUser.name.trim().length === 0 ||
+      currentUser.username.trim().length === 0
+    ) {
+      return;
+    }
+
     const editedUser = users.map((user: User) =>
       Number(user.id) === Number(id)
         ? { ...user, name: currentUser.name, username: currentUser.username }
@@ -104,10 +118,6 @@ const UsersPage: React.FC = () => {
 
   const handleAddChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-
-    if (value === ' ') {
-      return;
-    }
 
     setNewUser((prev) => ({
       ...prev,

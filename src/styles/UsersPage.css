@@ -335,3 +335,9 @@
     left: 10px;
   }
 }
+
+.providerEror {
+  color: #c42828;
+  font-weight: 600;
+  min-height: 25px;
+}

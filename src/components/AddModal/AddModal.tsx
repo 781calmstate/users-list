@@ -14,6 +14,8 @@ const AddModal: React.FC<Props> = ({
   handleAddChange,
   newUser,
 }) => {
+  const isSaveDisabled =
+    newUser.name.trim().length === 0 || newUser.username.trim().length === 0;
   return (
     <div className="backshadow">
       <div className="modal">
@@ -28,6 +30,9 @@ const AddModal: React.FC<Props> = ({
               className="modal__inputField"
               onChange={handleAddChange}
             />
+            <div className="providerEror">
+              {newUser.name.trim().length === 0 ? 'Please provide name' : ''}
+            </div>
           </label>
           <label htmlFor="username" className="modal__label">
             Username <br />
@@ -38,12 +43,20 @@ const AddModal: React.FC<Props> = ({
               className="modal__inputField"
               onChange={handleAddChange}
             />
+            <div className="providerEror">
+              {newUser.username.trim().length === 0
+                ? 'Please provide username'
+                : ''}
+            </div>
           </label>
         </form>
         <div className="modal__footer">
           {' '}
           <button
-            className="saveBtn modal__footer-button"
+            disabled={isSaveDisabled}
+            className={`saveBtn modal__footer-button ${
+              isSaveDisabled ? 'disabled' : ''
+            }`}
             onClick={(e) => addUser(e, newUser)}
           >
             Save
