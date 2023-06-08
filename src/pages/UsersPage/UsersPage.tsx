@@ -14,7 +14,9 @@ import EditModal from '../../components/EditModal/EditModal';
 
 import UserFilter from '../../components/UserFilter/UserFilter';
 import UserList from '../../components/UserList/UserList';
+
 import '../../styles/UsersPage.css';
+import '../../styles/transition.css';
 
 const UsersPage: React.FC = () => {
   const [users, setUsers] = useContext(UsersContext);

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import { User } from '../../types/model';
 
 import UserItem from '../UserItem/UserItem';
@@ -20,17 +22,20 @@ const UserList: React.FC<Props> = ({
   setCurrentUser,
 }) => {
   return (
-    <div className="users-list">
-      {sortedAndSearched.map((user) => (
-        <UserItem
-          key={user.id}
-          user={user}
-          setIsEditing={setIsEditing}
-          setIsDeleting={setIsDeleting}
-          setId={setId}
-          setCurrentUser={setCurrentUser}
-        />
-      ))}
+    <div>
+      <TransitionGroup className="users-list">
+        {sortedAndSearched.map((user) => (
+          <CSSTransition key={user.id} timeout={1000} classNames="item">
+            <UserItem
+              user={user}
+              setIsEditing={setIsEditing}
+              setIsDeleting={setIsDeleting}
+              setId={setId}
+              setCurrentUser={setCurrentUser}
+            />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     </div>
   );
 };

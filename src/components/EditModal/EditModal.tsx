@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { User } from '../../types/model';
 import { UsersContext } from '../../context';

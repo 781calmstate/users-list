@@ -15,8 +15,9 @@ const DeleteModal: React.FC<Props> = ({ setIsDeleting, id }) => {
   const currentUser = users.find((user: User) => user.id === id);
 
   const handleDelete = () => {
-    setUsers(users.filter((user: User) => user.id !== id));
-
+    const filteredUsers = users.filter((user: User) => user.id !== id);
+    setUsers(filteredUsers);
+    localStorage.setItem('usersData', JSON.stringify(filteredUsers));
     setIsDeleting(false);
   };
 
