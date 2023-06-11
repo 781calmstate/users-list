@@ -4,6 +4,10 @@ import { motion } from 'framer-motion';
 
 import { Link } from 'react-router-dom';
 
+import { Tooltip } from '@mui/material';
+
+import { MdOutlineRefresh } from 'react-icons/md';
+
 import { Filter, User } from '../../types/model';
 
 import { useUsers } from '../../hooks/useUsers';
@@ -19,6 +23,8 @@ import UserList from '../../components/UserList/UserList';
 
 import '../../styles/UsersPage.css';
 import '../../styles/transition.css';
+import '../../styles/nav-buttons.css';
+import ResetModal from '../../components/ResetModal/ResetModal';
 
 const UsersPage: React.FC = () => {
   const [users, setUsers] = useContext(UsersContext);
@@ -37,6 +43,7 @@ const UsersPage: React.FC = () => {
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [isReseting, setIsReseting] = useState<boolean>(false);
   const [id, setId] = useState('0');
 
   const [filter, setFilter] = useState<Filter>({ query: '', sort: '' });
@@ -50,7 +57,6 @@ const UsersPage: React.FC = () => {
         setUsers(usersData);
         return;
       }
-      console.log(usersData, 'usersddatasdaqd12313');
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/users'
       );
@@ -142,6 +148,10 @@ const UsersPage: React.FC = () => {
     }));
   };
 
+  const handleResetClick = () => {
+    setIsReseting(true);
+  };
+
   const showAddModal = () => {
     setIsAdding(true);
   };
@@ -172,6 +182,12 @@ const UsersPage: React.FC = () => {
       <Link to="/users-list">
         <button className="nav-button prevpage"></button>
       </Link>
+      <Tooltip title="Reset changes in user list" placement="top">
+        <button className="nav-button reset" onClick={handleResetClick}>
+          <MdOutlineRefresh />
+        </button>
+      </Tooltip>
+
       {isAdding && (
         <AddModal
           addUser={addUser}
@@ -190,6 +206,7 @@ const UsersPage: React.FC = () => {
         />
       )}
       {isDeleting && <DeleteModal id={id} setIsDeleting={setIsDeleting} />}
+      {isReseting && <ResetModal setIsReseting={setIsReseting} />}
     </div>
   );
 };

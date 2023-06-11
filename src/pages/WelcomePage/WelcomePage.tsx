@@ -8,6 +8,7 @@ import contentImage from '../../img/background/welcome.jpg';
 import usersImage from '../../img/icons/users.png';
 
 import '../../styles/WelcomePage.css';
+import '../../styles/nav-buttons.css';
 
 const WelcomePage: React.FC = () => {
   const pageTransition = {

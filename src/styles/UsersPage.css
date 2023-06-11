@@ -297,46 +297,6 @@
   color: white;
 }
 
-.prevpage {
-  position: fixed;
-  bottom: 30px;
-  left: 65px;
-  transition: 0.3s;
-}
-
-.prevpage::after {
-  content: '';
-  display: inline-block;
-  margin-top: 0.5em;
-  margin-right: -0.3em;
-  width: 1.4em;
-  height: 1.4em;
-  border-top: 0.5em solid #6e6d6d;
-  border-right: 0.5em solid #6e6d6d;
-  -moz-transform: rotate(225deg);
-  -webkit-transform: rotate(225deg);
-  transform: rotate(225deg);
-}
-
-@media (max-width: 1650px) {
-  .userspage {
-    width: 1100px;
-  }
-
-  .prevpage {
-    left: 20px;
-  }
-}
-@media (max-width: 1450px) {
-  .userspage {
-    width: 1000px;
-  }
-
-  .prevpage {
-    left: 10px;
-  }
-}
-
 .providerEror {
   color: #c42828;
   font-weight: 600;

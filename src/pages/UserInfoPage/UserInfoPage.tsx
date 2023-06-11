@@ -14,6 +14,7 @@ import { UsersContext } from '../../context';
 import { User } from '../../types/model';
 
 import '../../styles/UserInfoPage.css';
+import '../../styles/nav-buttons.css';
 
 const UserInfoPage: React.FC = () => {
   const [users, setUsers] = useContext(UsersContext);
