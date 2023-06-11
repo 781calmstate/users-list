@@ -1,13 +1,10 @@
-import React, { useContext } from 'react';
-import { UsersContext } from '../../context';
+import React from 'react';
 
 type Props = {
   setIsReseting: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ResetModal: React.FC<Props> = ({ setIsReseting }) => {
-  const [users, setUsers] = useContext(UsersContext);
-
   const handleReset = () => {
     localStorage.removeItem('usersData');
 
