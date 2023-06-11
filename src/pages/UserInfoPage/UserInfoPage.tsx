@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 
+import { motion } from 'framer-motion';
+
 import { useParams } from 'react-router-dom';
 
 import { Link } from 'react-router-dom';
@@ -44,7 +46,12 @@ const UserInfoPage: React.FC = () => {
     .find((user) => Number(user.id) < userId);
 
   return (
-    <section>
+    <motion.section
+      style={{ position: 'absolute' }}
+      initial={{ opacity: 0, y: '-100vh' }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: '-100vh' }}
+    >
       <div className="userpage">
         <div className="userpage__header">
           <Link
@@ -76,7 +83,7 @@ const UserInfoPage: React.FC = () => {
           <button className="nav-button prevpage userpage__returnBtn"></button>
         </Link>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

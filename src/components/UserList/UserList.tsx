@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { User } from '../../types/model';
 
@@ -22,21 +22,34 @@ const UserList: React.FC<Props> = ({
   setCurrentUser,
 }) => {
   return (
-    <div>
-      <TransitionGroup className="users-list">
-        {sortedAndSearched.map((user) => (
-          <CSSTransition key={user.id} timeout={1000} classNames="item">
-            <UserItem
-              user={user}
-              setIsEditing={setIsEditing}
-              setIsDeleting={setIsDeleting}
-              setId={setId}
-              setCurrentUser={setCurrentUser}
-            />
-          </CSSTransition>
-        ))}
-      </TransitionGroup>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className="users-list">
+        <AnimatePresence>
+          {sortedAndSearched.map((user) => (
+            <motion.div
+              key={user.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5 }}
+              className="item"
+            >
+              <UserItem
+                user={user}
+                setIsEditing={setIsEditing}
+                setIsDeleting={setIsDeleting}
+                setId={setId}
+                setCurrentUser={setCurrentUser}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </motion.div>
   );
 };
 

@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 
+import { motion } from 'framer-motion';
+
 import { Link } from 'react-router-dom';
 
 import { Filter, User } from '../../types/model';
@@ -146,9 +148,15 @@ const UsersPage: React.FC = () => {
 
   return (
     <div className="userspage">
-      <button className="addBtn" onClick={showAddModal}>
+      <motion.button
+        initial={{ opacity: 0, y: '-100%' }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="addBtn"
+        onClick={showAddModal}
+      >
         Add User
-      </button>
+      </motion.button>
       <UserFilter
         filter={filter}
         handleQueryChange={handleQueryChange}

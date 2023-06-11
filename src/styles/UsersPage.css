@@ -26,9 +26,9 @@
 /* Modal */
 
 .backshadow {
+  position: fixed;
   width: 100%;
   height: 100vh;
-  position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
@@ -158,12 +158,12 @@
 }
 
 .input__field:focus {
-  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.5);
+  background-color: rgba(255, 238, 255, 0.822);
   outline: none;
 }
 
 .input__field:hover {
-  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.7);
+  background-color: rgb(255, 238, 255);
 }
 
 .sortingMenu {
@@ -171,6 +171,7 @@
 }
 
 .sorter {
+  color: rgb(136, 10, 136);
   width: 170px;
   appearance: none;
   padding: 12px 14px;
@@ -185,19 +186,19 @@
   display: none;
 }
 
-.sorter:focus {
-  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.5);
-  outline: none;
+.sorter:hover {
+  background-color: rgb(214, 140, 214);
+  color: #fff;
 }
 
-.sorter:hover {
-  box-shadow: 0 0 10px 1px rgba(214, 140, 214, 0.7);
+.sorter:focus {
+  outline: none;
 }
 
 .sorter__btn {
   position: absolute;
   border: none;
-  background-color: #fff;
+  background-color: inherit;
   cursor: pointer;
   right: 10px;
   top: 14px;

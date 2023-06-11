@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { motion } from 'framer-motion';
+
 import { Filter } from '../../types/model';
 
 import SortingMenu from '../SortingMenu/SortingMenu';
@@ -16,7 +18,12 @@ const UserFilter: React.FC<Props> = ({
   setFilter,
 }) => {
   return (
-    <div className="searchAndSort">
+    <motion.div
+      initial={{ opacity: 0, y: '100%' }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="searchAndSort"
+    >
       {' '}
       <form className="input">
         <input
@@ -40,7 +47,7 @@ const UserFilter: React.FC<Props> = ({
           { value: 'id', name: 'Descending' },
         ]}
       />
-    </div>
+    </motion.div>
   );
 };
 
