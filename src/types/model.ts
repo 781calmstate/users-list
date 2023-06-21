@@ -2,6 +2,10 @@ export interface User {
   id: string;
   name: string;
   username: string;
+  email: string;
+  phone: string;
+  company: { name: string };
+  address: { city: string };
 }
 
 export interface Option {

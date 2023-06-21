@@ -1,26 +1,63 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { User } from '../../types/model';
-import { UsersContext } from '../../context';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
+import * as usersActions from '../../redux/store/slices/usersSlice';
 
 type Props = {
-  editUser: (e: React.FormEvent, currentUser: User, id: string) => void;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
   id: string;
   currentUser: User;
-  handleEditChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const EditModal: React.FC<Props> = ({
-  editUser,
   setIsEditing,
   id,
   currentUser,
-  handleEditChange,
+  setCurrentUser,
 }) => {
-  const [users] = useContext(UsersContext);
+  const { users } = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
 
   const clickedUser = users.find((user: User) => user.id === id);
+
+  if (!clickedUser) {
+    return null;
+  }
+
+  const editUser = () => {
+    if (
+      currentUser.name.trim().length === 0 ||
+      currentUser.username.trim().length === 0
+    ) {
+      return;
+    }
+
+    dispatch(usersActions.edit({ ...currentUser, id: clickedUser.id }));
+  };
+
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    if (value === ' ') {
+      return;
+    }
+
+    setCurrentUser((prev) => ({
+      ...prev,
+      [e.target.name]: typeof value === 'string' ? value : +value,
+    }));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    editUser();
+    setIsEditing(false);
+  };
 
   const isSaveDisabled =
     currentUser.name.trim().length === 0 ||
@@ -68,7 +105,7 @@ const EditModal: React.FC<Props> = ({
             className={`saveBtn modal__footer-button ${
               isSaveDisabled ? 'disabled' : ''
             }`}
-            onClick={(e) => editUser(e, currentUser, id)}
+            onClick={handleSubmit}
           >
             Save
           </button>

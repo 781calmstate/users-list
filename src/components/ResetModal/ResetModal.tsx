@@ -1,14 +1,20 @@
 import React from 'react';
 
+import { useAppDispatch } from '../../hooks/redux';
+
+import * as userActions from '../../redux/store/slices/usersSlice';
+
 type Props = {
   setIsReseting: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ResetModal: React.FC<Props> = ({ setIsReseting }) => {
+  const dispatch = useAppDispatch();
+
   const handleReset = () => {
     localStorage.removeItem('usersData');
 
-    window.location.reload();
+    dispatch(userActions.init());
     setIsReseting(false);
   };
   return (

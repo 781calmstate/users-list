@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { motion } from 'framer-motion';
 
@@ -6,10 +6,12 @@ import { useParams } from 'react-router-dom';
 
 import { Link } from 'react-router-dom';
 
-import { IoMdArrowBack } from 'react-icons/io';
 import { FiArrowRight } from 'react-icons/fi';
+import { IoMdArrowBack } from 'react-icons/io';
 
-import { UsersContext } from '../../context';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
+import * as usersActions from '../../redux/store/slices/usersSlice';
 
 import { User } from '../../types/model';
 
@@ -17,7 +19,8 @@ import '../../styles/UserInfoPage.css';
 import '../../styles/nav-buttons.css';
 
 const UserInfoPage: React.FC = () => {
-  const [users, setUsers] = useContext(UsersContext);
+  const { users } = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
 
   const { id } = useParams();
 
@@ -25,9 +28,8 @@ const UserInfoPage: React.FC = () => {
 
   useEffect(() => {
     const usersData = JSON.parse(localStorage.getItem('usersData') || '[]');
-    console.log(usersData);
     if (!users.length) {
-      setUsers(usersData);
+      dispatch(usersActions.getUsers(usersData));
       return;
     }
   }, []);
@@ -38,12 +40,11 @@ const UserInfoPage: React.FC = () => {
     return <div>Not Found</div>;
   }
 
-  const { name, username, email, phone, company } = user;
-  const { city } = user.address;
+  const { name, username, email, phone, company, address } = user;
 
   const nextUser = users.find((user: User) => Number(user.id) > userId);
   const prevUser = [...users]
-    .sort((p1, p2) => p2.id - p1.id)
+    .sort((a, b) => Number(b.id) - Number(a.id))
     .find((user) => Number(user.id) < userId);
 
   return (
@@ -71,7 +72,8 @@ const UserInfoPage: React.FC = () => {
         </div>
         <div className="userpage__info">
           <p className="info__text">
-            {name}, aka {`"${username}"`} currently resides in {city}. <br />
+            {name}, aka {`"${username}"`} currently resides in {address.city}.{' '}
+            <br />
             {username} working for company named {company.name} <br />
           </p>{' '}
           <h2 className="info__contacts">Contacts:</h2>

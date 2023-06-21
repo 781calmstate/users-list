@@ -4,11 +4,9 @@ import { User } from '../types/model';
 export const useSortedUsers = (users: User[], sort: string) => {
   const sortedUsers = useMemo(() => {
     if (sort && (sort === 'name' || sort === 'username')) {
-      return users.sort((a, b) =>
-        a[sort as keyof typeof a].localeCompare(b[sort as keyof typeof b])
-      );
+      return [...users].sort((a, b) => a[sort].localeCompare(b[sort]));
     } else if (sort === 'id') {
-      return users.sort((a, b) => Number(b.id) - Number(a.id));
+      return [...users].sort((a, b) => Number(b.id) - Number(a.id));
     } else {
       return users;
     }

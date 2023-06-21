@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
-
-import { UsersContext } from '../../context';
+import React from 'react';
 
 import { User } from '../../types/model';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
+import * as usersActions from '../../redux/store/slices/usersSlice';
 
 type Props = {
   id: string;
@@ -10,14 +12,18 @@ type Props = {
 };
 
 const DeleteModal: React.FC<Props> = ({ setIsDeleting, id }) => {
-  const [users, setUsers] = useContext(UsersContext);
+  const { users } = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
 
   const currentUser = users.find((user: User) => user.id === id);
 
+  if (!currentUser) {
+    return null;
+  }
+
   const handleDelete = () => {
-    const filteredUsers = users.filter((user: User) => user.id !== id);
-    setUsers(filteredUsers);
-    localStorage.setItem('usersData', JSON.stringify(filteredUsers));
+    dispatch(usersActions.toggle(currentUser));
+
     setIsDeleting(false);
   };
 

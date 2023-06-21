@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { BiFilterAlt } from 'react-icons/bi';
 
 import { Tooltip } from '@mui/material';
 
-import { UsersContext } from '../../context';
+import { useAppDispatch } from '../../hooks/redux';
 
-import { Filter, Option, User } from '../../types/model';
+import * as usersActions from '../../redux/store/slices/usersSlice';
+
+import { Filter, Option } from '../../types/model';
 
 type Props = {
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
@@ -23,11 +25,11 @@ const SortingMenu: React.FC<Props> = ({
   defaultValue,
   options,
 }) => {
-  const [users, setUsers] = useContext(UsersContext);
+  const dispatch = useAppDispatch();
 
   const handleResetClick = () => {
     setFilter({ query: '', sort: '' });
-    setUsers(users.sort((a: User, b: User) => Number(a.id) - Number(b.id)));
+    dispatch(usersActions.resetFilters());
   };
 
   return (
