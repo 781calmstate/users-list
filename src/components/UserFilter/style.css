@@ -1,0 +1,32 @@
+.searchAndSort {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .input {
+    display: flex;
+    width: 40%;
+    position: relative;
+    align-items: center;
+  }
+  
+  .input__field {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 18px;
+    border: none;
+    transition: 0.2s;
+    box-shadow: inset 0 0 5px rgb(214, 140, 214);
+  }
+  
+  .input__field:focus {
+    background-color: rgba(255, 238, 255, 0.822);
+    outline: none;
+  }
+  
+  .input__field:hover {
+    background-color: rgb(255, 238, 255);
+  }

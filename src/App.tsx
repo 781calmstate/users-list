@@ -4,10 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import { Route, Routes, useLocation } from 'react-router-dom';
 
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import UserInfoPage from './pages/UserInfoPage/UserInfoPage';
-import UsersPage from './pages/UsersPage/UsersPage';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
+import { NotFoundPage, UserInfoPage, UsersPage, WelcomePage } from './pages';
 
 import './styles/App.css';
 

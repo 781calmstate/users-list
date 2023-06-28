@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks';
 
 import * as userActions from '../../redux/store/slices/usersSlice';
 
@@ -8,7 +8,9 @@ type TResetModalProps = {
   setIsReseting: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ResetModal = ({ setIsReseting }: TResetModalProps): JSX.Element => {
+export const ResetModal = ({
+  setIsReseting,
+}: TResetModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleReset = () => {
@@ -44,5 +46,3 @@ const ResetModal = ({ setIsReseting }: TResetModalProps): JSX.Element => {
     </div>
   );
 };
-
-export default ResetModal;

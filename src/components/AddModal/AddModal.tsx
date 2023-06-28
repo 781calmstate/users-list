@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { IUser } from '../../types/model';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
 type TAddModalProps = {
@@ -19,7 +19,7 @@ const INITIAL_USER = {
   address: { city: '' },
 };
 
-const AddModal = ({ setIsAdding }: TAddModalProps): JSX.Element => {
+export const AddModal = ({ setIsAdding }: TAddModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const { users } = useAppSelector((state) => state.users);
   const [newUser, setNewUser] = useState<IUser>(INITIAL_USER);
@@ -124,5 +124,3 @@ const AddModal = ({ setIsAdding }: TAddModalProps): JSX.Element => {
     </div>
   );
 };
-
-export default AddModal;

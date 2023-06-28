@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import '../../styles/NotFoundPage.css';
+import './style.css';
 
-const NotFoundPage = (): JSX.Element => {
+export const NotFoundPage = (): JSX.Element => {
   return (
     <section className="page_404">
       <div className="container">
@@ -27,5 +27,3 @@ const NotFoundPage = (): JSX.Element => {
     </section>
   );
 };
-
-export default NotFoundPage;

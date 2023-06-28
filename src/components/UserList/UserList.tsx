@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { IUser } from '../../types/model';
 
-import UserItem from '../UserItem/UserItem';
+import { UserItem } from '..';
+
+import './style.css';
 
 type TUserListProps = {
   sortedAndSearched: IUser[];
@@ -14,7 +16,7 @@ type TUserListProps = {
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser>>;
 };
 
-const UserList = ({
+export const UserList = ({
   sortedAndSearched,
   setIsEditing,
   setIsDeleting,
@@ -52,5 +54,3 @@ const UserList = ({
     </motion.div>
   );
 };
-
-export default UserList;

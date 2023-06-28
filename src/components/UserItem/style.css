@@ -1,0 +1,85 @@
+.users-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eeebeb;
+  border: none;
+  border-radius: 3px;
+  padding: 15px 30px;
+  box-shadow: inset 0 0 8px rgba(214, 140, 214, 0.4);
+}
+
+.edited {
+  font-style: italic;
+}
+
+.item__id {
+  font-weight: 600;
+  width: 50px;
+}
+
+.item__name {
+  font-weight: 600;
+  text-align: left;
+  width: 300px;
+}
+
+.item__username {
+  font-weight: 600;
+  text-align: left;
+  width: 300px;
+}
+
+.item__buttons {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.item__button {
+  display: flex;
+  font-size: 17px;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 75px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button__about {
+  font-style: normal;
+  color: green;
+  border: 1px solid green;
+  transition: 0.5s;
+}
+
+.button__about:hover {
+  background-color: green;
+  color: white;
+}
+
+.button__edit {
+  font-style: normal;
+  color: goldenrod;
+  border: 1px solid goldenrod;
+  transition: 0.5s;
+}
+
+.button__edit:hover {
+  background-color: goldenrod;
+  color: white;
+}
+
+.button__delete {
+  font-style: normal;
+  color: rgb(190, 17, 17);
+  border: 1px solid rgb(190, 17, 17);
+  transition: 0.5s;
+}
+
+.button__delete:hover {
+  background-color: rgb(190, 17, 17);
+  color: white;
+}

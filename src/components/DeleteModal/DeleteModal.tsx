@@ -2,16 +2,21 @@ import React from 'react';
 
 import { IUser } from '../../types/model';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
+
+import './style.css';
 
 type TDeleteModalProps = {
   id: string;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const DeleteModal = ({ setIsDeleting, id }: TDeleteModalProps): JSX.Element => {
+export const DeleteModal = ({
+  setIsDeleting,
+  id,
+}: TDeleteModalProps): JSX.Element => {
   const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
@@ -51,5 +56,3 @@ const DeleteModal = ({ setIsDeleting, id }: TDeleteModalProps): JSX.Element => {
     </div>
   );
 };
-
-export default DeleteModal;

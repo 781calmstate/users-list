@@ -4,11 +4,13 @@ import { BiFilterAlt } from 'react-icons/bi';
 
 import { Tooltip } from '@mui/material';
 
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
 import { IFilter, IOption } from '../../types/model';
+
+import './style.css';
 
 type TSortingMenuProps = {
   setFilter: React.Dispatch<React.SetStateAction<IFilter>>;
@@ -18,7 +20,7 @@ type TSortingMenuProps = {
   options: IOption[];
 };
 
-const SortingMenu = ({
+export const SortingMenu = ({
   setFilter,
   value,
   onChange,
@@ -43,11 +45,7 @@ const SortingMenu = ({
           {defaultValue}
         </option>
         {options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            className="sorter__option"
-          >
+          <option key={option.value} value={option.value}>
             {option.name}
           </option>
         ))}
@@ -60,5 +58,3 @@ const SortingMenu = ({
     </div>
   );
 };
-
-export default SortingMenu;

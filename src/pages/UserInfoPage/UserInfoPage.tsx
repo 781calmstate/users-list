@@ -9,16 +9,16 @@ import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import { IoMdArrowBack } from 'react-icons/io';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
 import { IUser } from '../../types/model';
 
-import '../../styles/UserInfoPage.css';
+import './style.css';
 import '../../styles/nav-buttons.css';
 
-const UserInfoPage = (): JSX.Element => {
+export const UserInfoPage = (): JSX.Element => {
   const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
@@ -89,5 +89,3 @@ const UserInfoPage = (): JSX.Element => {
     </motion.section>
   );
 };
-
-export default UserInfoPage;

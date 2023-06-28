@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 import contentImage from '../../img/background/welcome.jpg';
 import usersImage from '../../img/icons/users.png';
 
-import '../../styles/WelcomePage.css';
+import './style.css';
 import '../../styles/nav-buttons.css';
 
-const WelcomePage = (): JSX.Element => {
+export const WelcomePage = (): JSX.Element => {
   const pageTransition = {
     type: 'tween',
     ease: 'anticipate',
@@ -50,5 +50,3 @@ const WelcomePage = (): JSX.Element => {
     </motion.div>
   );
 };
-
-export default WelcomePage;

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { IUser } from '../../types/model';
 
+import './style.css';
+
 type TUserItemProps = {
   user: IUser;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,7 +14,7 @@ type TUserItemProps = {
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser>>;
 };
 
-const UserItem = ({
+export const UserItem = ({
   user,
   setIsEditing,
   setIsDeleting,
@@ -66,5 +68,3 @@ const UserItem = ({
     </div>
   );
 };
-
-export default UserItem;

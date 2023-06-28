@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 
 import { IFilter } from '../../types/model';
 
-import SortingMenu from '../SortingMenu/SortingMenu';
+import { SortingMenu } from '..';
+
+import './style.css';
 
 type TUserFilterProps = {
   filter: IFilter;
@@ -12,7 +14,7 @@ type TUserFilterProps = {
   setFilter: React.Dispatch<React.SetStateAction<IFilter>>;
 };
 
-const UserFilter = ({
+export const UserFilter = ({
   filter,
   handleQueryChange,
   setFilter,
@@ -50,5 +52,3 @@ const UserFilter = ({
     </motion.div>
   );
 };
-
-export default UserFilter;

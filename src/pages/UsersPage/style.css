@@ -1,0 +1,24 @@
+.userspage {
+  width: 1300px;
+  margin: 0 auto;
+  padding: 25px;
+  transition: 0.3s;
+}
+
+/* Add Button */
+
+.addBtn {
+  color: rgb(136, 10, 136);
+  background-color: #fff;
+  border: 1px solid rgb(214, 140, 214);
+  border-radius: 2px;
+  padding: 7px 15px;
+  margin-bottom: 20px;
+  transition: 0.6s;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: rgb(214, 140, 214);
+  color: #fff;
+}

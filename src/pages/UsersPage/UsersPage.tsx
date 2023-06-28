@@ -8,24 +8,26 @@ import { Tooltip } from '@mui/material';
 
 import { MdOutlineRefresh } from 'react-icons/md';
 
-import { IFilter, IUser } from '../../types/model';
-
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useUsers } from '../../hooks/useUsers';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useUsers } from '../../hooks';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
-import AddModal from '../../components/AddModal/AddModal';
-import DeleteModal from '../../components/DeleteModal/DeleteModal';
-import EditModal from '../../components/EditModal/EditModal';
-import ResetModal from '../../components/ResetModal/ResetModal';
+import {
+  AddModal,
+  DeleteModal,
+  EditModal,
+  ResetModal,
+  UserFilter,
+  UserList,
+} from '../../components';
 
-import UserFilter from '../../components/UserFilter/UserFilter';
-import UserList from '../../components/UserList/UserList';
+import { IFilter, IUser } from '../../types/model';
 
-import '../../styles/UsersPage.css';
+import './style.css';
 import '../../styles/nav-buttons.css';
 import '../../styles/transition.css';
+import '../../styles/modal.css';
 
 const INITIAL_USER = {
   id: '',
@@ -37,7 +39,7 @@ const INITIAL_USER = {
   address: { city: '' },
 };
 
-const UsersPage = (): JSX.Element => {
+export const UsersPage = (): JSX.Element => {
   const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
@@ -113,5 +115,3 @@ const UsersPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default UsersPage;

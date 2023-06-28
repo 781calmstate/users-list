@@ -1,0 +1,13 @@
+.deleteModal__deleteBtn {
+  background-color: #c42828;
+  border: 1px solid #c42828;
+}
+
+.deleteModal__deleteBtn:hover {
+  background-color: #a51616;
+}
+
+.deleteModal__cancelBtn {
+  background-color: #494848;
+  border: 1px solid #494848;
+}

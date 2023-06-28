@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IUser } from '../../types/model';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
@@ -13,7 +13,7 @@ type TEditModalProps = {
   currentUser: IUser;
 };
 
-const EditModal = ({
+export const EditModal = ({
   setIsEditing,
   id,
   currentUser,
@@ -120,5 +120,3 @@ const EditModal = ({
     </div>
   );
 };
-
-export default EditModal;
