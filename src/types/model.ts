@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
   id: string;
   name: string;
   username: string;
@@ -8,12 +8,12 @@ export interface User {
   address: { city: string };
 }
 
-export interface Option {
+export interface IOption {
   value: string;
   name: string;
 }
 
-export interface Filter {
+export interface IFilter {
   query: string;
   sort: string;
 }

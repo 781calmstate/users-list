@@ -10,7 +10,7 @@ import usersImage from '../../img/icons/users.png';
 import '../../styles/WelcomePage.css';
 import '../../styles/nav-buttons.css';
 
-const WelcomePage: React.FC = () => {
+const WelcomePage = (): JSX.Element => {
   const pageTransition = {
     type: 'tween',
     ease: 'anticipate',

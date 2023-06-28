@@ -2,25 +2,25 @@ import React from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { User } from '../../types/model';
+import { IUser } from '../../types/model';
 
 import UserItem from '../UserItem/UserItem';
 
-type Props = {
-  sortedAndSearched: User[];
+type TUserListProps = {
+  sortedAndSearched: IUser[];
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
   setId: React.Dispatch<React.SetStateAction<string>>;
-  setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
+  setCurrentUser: React.Dispatch<React.SetStateAction<IUser>>;
 };
 
-const UserList: React.FC<Props> = ({
+const UserList = ({
   sortedAndSearched,
   setIsEditing,
   setIsDeleting,
   setId,
   setCurrentUser,
-}) => {
+}: TUserListProps): JSX.Element => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}

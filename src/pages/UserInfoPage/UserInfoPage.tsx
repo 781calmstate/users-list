@@ -13,12 +13,12 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
-import { User } from '../../types/model';
+import { IUser } from '../../types/model';
 
 import '../../styles/UserInfoPage.css';
 import '../../styles/nav-buttons.css';
 
-const UserInfoPage: React.FC = () => {
+const UserInfoPage = (): JSX.Element => {
   const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
@@ -34,7 +34,7 @@ const UserInfoPage: React.FC = () => {
     }
   }, []);
 
-  const user = users.find((user: User) => Number(user.id) == userId);
+  const user = users.find((user: IUser) => Number(user.id) == userId);
 
   if (!user) {
     return <div>Not Found</div>;
@@ -42,7 +42,7 @@ const UserInfoPage: React.FC = () => {
 
   const { name, username, email, phone, company, address } = user;
 
-  const nextUser = users.find((user: User) => Number(user.id) > userId);
+  const nextUser = users.find((user: IUser) => Number(user.id) > userId);
   const prevUser = [...users]
     .sort((a, b) => Number(b.id) - Number(a.id))
     .find((user) => Number(user.id) < userId);

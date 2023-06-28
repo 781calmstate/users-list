@@ -2,21 +2,21 @@ import React from 'react';
 
 import { motion } from 'framer-motion';
 
-import { Filter } from '../../types/model';
+import { IFilter } from '../../types/model';
 
 import SortingMenu from '../SortingMenu/SortingMenu';
 
-type Props = {
-  filter: Filter;
+type TUserFilterProps = {
+  filter: IFilter;
   handleQueryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
+  setFilter: React.Dispatch<React.SetStateAction<IFilter>>;
 };
 
-const UserFilter: React.FC<Props> = ({
+const UserFilter = ({
   filter,
   handleQueryChange,
   setFilter,
-}) => {
+}: TUserFilterProps): JSX.Element => {
   return (
     <motion.div
       initial={{ opacity: 0, y: '100%' }}

@@ -4,11 +4,11 @@ import { useAppDispatch } from '../../hooks/redux';
 
 import * as userActions from '../../redux/store/slices/usersSlice';
 
-type Props = {
+type TResetModalProps = {
   setIsReseting: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ResetModal: React.FC<Props> = ({ setIsReseting }) => {
+const ResetModal = ({ setIsReseting }: TResetModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleReset = () => {

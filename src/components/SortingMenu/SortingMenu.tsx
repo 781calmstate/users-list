@@ -8,23 +8,23 @@ import { useAppDispatch } from '../../hooks/redux';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
-import { Filter, Option } from '../../types/model';
+import { IFilter, IOption } from '../../types/model';
 
-type Props = {
-  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
+type TSortingMenuProps = {
+  setFilter: React.Dispatch<React.SetStateAction<IFilter>>;
   value: string;
   onChange: (selectedSort: string) => void;
   defaultValue: string;
-  options: Option[];
+  options: IOption[];
 };
 
-const SortingMenu: React.FC<Props> = ({
+const SortingMenu = ({
   setFilter,
   value,
   onChange,
   defaultValue,
   options,
-}) => {
+}: TSortingMenuProps): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleResetClick = () => {

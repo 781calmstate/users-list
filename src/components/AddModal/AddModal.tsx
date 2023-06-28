@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import { User } from '../../types/model';
+import { IUser } from '../../types/model';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
-type Props = {
+type TAddModalProps = {
   setIsAdding: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -19,12 +19,12 @@ const INITIAL_USER = {
   address: { city: '' },
 };
 
-const AddModal: React.FC<Props> = ({ setIsAdding }) => {
+const AddModal = ({ setIsAdding }: TAddModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const { users } = useAppSelector((state) => state.users);
-  const [newUser, setNewUser] = useState<User>(INITIAL_USER);
+  const [newUser, setNewUser] = useState<IUser>(INITIAL_USER);
 
-  const addUser = (e: React.FormEvent, newUser: User) => {
+  const addUser = (e: React.FormEvent, newUser: IUser) => {
     e.preventDefault();
 
     if (
@@ -34,8 +34,8 @@ const AddModal: React.FC<Props> = ({ setIsAdding }) => {
       return;
     }
 
-    const maxId = [...users].sort((p1, p2) => Number(p2.id) - Number(p1.id))[0]
-      .id;
+    const maxId = [...users].sort((a, b) => Number(b.id) - Number(a.id))[0].id;
+
     const numberId = Number(maxId);
 
     if (newUser) {

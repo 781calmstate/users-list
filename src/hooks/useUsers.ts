@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { User } from '../types/model';
+import { IUser } from '../types/model';
 
-export const useSortedUsers = (users: User[], sort: string) => {
+export const useSortedUsers = (users: IUser[], sort: string) => {
   const sortedUsers = useMemo(() => {
     if (sort && (sort === 'name' || sort === 'username')) {
       return [...users].sort((a, b) => a[sort].localeCompare(b[sort]));
@@ -14,7 +14,7 @@ export const useSortedUsers = (users: User[], sort: string) => {
   return sortedUsers;
 };
 
-export const useUsers = (users: User[], query: string, sort: string) => {
+export const useUsers = (users: IUser[], query: string, sort: string) => {
   const sortedUsers = useSortedUsers(users, sort);
 
   const sortedAndSearched = useMemo(() => {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import '../../styles/NotFoundPage.css';
 
-const NotFoundPage = () => {
+const NotFoundPage = (): JSX.Element => {
   return (
     <section className="page_404">
       <div className="container">

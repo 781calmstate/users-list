@@ -1,31 +1,31 @@
 import React from 'react';
 
-import { User } from '../../types/model';
+import { IUser } from '../../types/model';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
-type Props = {
+type TEditModalProps = {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
+  setCurrentUser: React.Dispatch<React.SetStateAction<IUser>>;
   id: string;
-  currentUser: User;
+  currentUser: IUser;
 };
 
-const EditModal: React.FC<Props> = ({
+const EditModal = ({
   setIsEditing,
   id,
   currentUser,
   setCurrentUser,
-}) => {
+}: TEditModalProps): JSX.Element => {
   const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
-  const clickedUser = users.find((user: User) => user.id === id);
+  const clickedUser = users.find((user: IUser) => user.id === id);
 
   if (!clickedUser) {
-    return null;
+    return <div>Something went wrong..</div>;
   }
 
   const editUser = () => {

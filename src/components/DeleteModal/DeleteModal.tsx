@@ -1,24 +1,24 @@
 import React from 'react';
 
-import { User } from '../../types/model';
+import { IUser } from '../../types/model';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import * as usersActions from '../../redux/store/slices/usersSlice';
 
-type Props = {
+type TDeleteModalProps = {
   id: string;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const DeleteModal: React.FC<Props> = ({ setIsDeleting, id }) => {
+const DeleteModal = ({ setIsDeleting, id }: TDeleteModalProps): JSX.Element => {
   const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
-  const currentUser = users.find((user: User) => user.id === id);
+  const currentUser = users.find((user: IUser) => user.id === id);
 
   if (!currentUser) {
-    return null;
+    return <div>Something went wrong..</div>;
   }
 
   const handleDelete = () => {

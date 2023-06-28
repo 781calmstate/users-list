@@ -8,7 +8,7 @@ import { Tooltip } from '@mui/material';
 
 import { MdOutlineRefresh } from 'react-icons/md';
 
-import { Filter, User } from '../../types/model';
+import { IFilter, IUser } from '../../types/model';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useUsers } from '../../hooks/useUsers';
@@ -37,19 +37,18 @@ const INITIAL_USER = {
   address: { city: '' },
 };
 
-const UsersPage: React.FC = () => {
+const UsersPage = (): JSX.Element => {
   const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
-  const [currentUser, setCurrentUser] = useState<User>(INITIAL_USER);
+  const [currentUser, setCurrentUser] = useState<IUser>(INITIAL_USER);
 
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [isReseting, setIsReseting] = useState<boolean>(false);
   const [id, setId] = useState('0');
-
-  const [filter, setFilter] = useState<Filter>({ query: '', sort: '' });
+  const [filter, setFilter] = useState<IFilter>({ query: '', sort: '' });
   const sortedAndSearched = useUsers(users, filter.query, filter.sort);
 
   useEffect(() => {

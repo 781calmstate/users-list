@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { User } from '../../types/model';
+import { IUser } from '../../types/model';
 
-type Props = {
-  user: User;
+type TUserItemProps = {
+  user: IUser;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   setIsDeleting: React.Dispatch<React.SetStateAction<boolean>>;
   setId: React.Dispatch<React.SetStateAction<string>>;
-  setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
+  setCurrentUser: React.Dispatch<React.SetStateAction<IUser>>;
 };
 
-const UserItem: React.FC<Props> = ({
+const UserItem = ({
   user,
   setIsEditing,
   setIsDeleting,
   setId,
   setCurrentUser,
-}) => {
+}: TUserItemProps): JSX.Element => {
   const [isEdited, setIsEdited] = useState(false);
 
   const { id, name, username } = user;
@@ -29,7 +29,7 @@ const UserItem: React.FC<Props> = ({
     setId(id);
   };
 
-  const handleEditClick = (id: string, user: User) => {
+  const handleEditClick = (id: string, user: IUser) => {
     setIsEditing(true);
 
     setId(id);

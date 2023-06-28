@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { User } from '../../../types/model';
+import { IUser } from '../../../types/model';
 
 export interface UsersState {
-  users: User[];
+  users: IUser[];
 }
 
 const initialState: UsersState = {
@@ -15,9 +15,9 @@ export const usersSlice = createSlice({
   name: 'usersSlice',
   initialState,
   reducers: {
-    toggle: (state, action: PayloadAction<User>) => {
+    toggle: (state, action: PayloadAction<IUser>) => {
       const isExist = state.users.find(
-        (user: User) => Number(user.id) === Number(action.payload.id)
+        (user: IUser) => Number(user.id) === Number(action.payload.id)
       );
 
       if (isExist) {
@@ -30,8 +30,8 @@ export const usersSlice = createSlice({
 
       localStorage.setItem('usersData', JSON.stringify(state.users));
     },
-    edit: (state, action: PayloadAction<User>) => {
-      state.users = state.users.map((user: User) => {
+    edit: (state, action: PayloadAction<IUser>) => {
+      state.users = state.users.map((user: IUser) => {
         return Number(user.id) === Number(action.payload.id)
           ? {
               ...user,
@@ -44,10 +44,10 @@ export const usersSlice = createSlice({
     },
     resetFilters: (state) => {
       state.users = state.users.sort(
-        (a: User, b: User) => Number(a.id) - Number(b.id)
+        (a: IUser, b: IUser) => Number(a.id) - Number(b.id)
       );
     },
-    getUsers: (state, action: PayloadAction<User[]>) => {
+    getUsers: (state, action: PayloadAction<IUser[]>) => {
       state.users = action.payload;
     },
   },
