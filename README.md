@@ -1,5 +1,4 @@
 # :frowning_man: Users List :page_with_curl:
-[WEBSITE](781calmstate.github.io/users-list/)
 
 This application provides a user table where you can add, delete, and edit any user,
 as well as explore the details of each user in the list.
