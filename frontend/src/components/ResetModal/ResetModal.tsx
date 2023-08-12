@@ -14,8 +14,6 @@ export const ResetModal = ({
   const dispatch = useAppDispatch();
 
   const handleReset = () => {
-    localStorage.removeItem('usersData');
-
     dispatch(userActions.init());
     setIsReseting(false);
   };

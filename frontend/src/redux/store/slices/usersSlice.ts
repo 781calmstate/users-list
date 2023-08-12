@@ -46,6 +46,15 @@ export const usersSlice = createSlice({
             }
           : user;
       });
+
+      fetch(`http://localhost:4000/users/${action.payload.id}`, {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(action.payload),
+      });
     },
     resetFilters: (state) => {
       state.users = state.users.sort(

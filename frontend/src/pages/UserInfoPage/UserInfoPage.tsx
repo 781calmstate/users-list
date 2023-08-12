@@ -26,13 +26,10 @@ export const UserInfoPage = (): JSX.Element => {
 
   const userId = Number(id);
 
-  useEffect(() => {
-    const usersData = JSON.parse(localStorage.getItem('usersData') || '[]');
-    if (!users.length) {
-      dispatch(usersActions.getUsers(usersData));
-      return;
-    }
-  }, []);
+  // useEffect(() => {
+  //   dispatch(usersActions.getUsers(usersData));
+  //   return;
+  // }, []);
 
   const user = users.find((user: IUser) => Number(user.id) == userId);
 

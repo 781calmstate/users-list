@@ -43,6 +43,12 @@ app
 
   .delete(async (req, res) => {
     await User.findOneAndDelete({ id: req.params.id });
+  })
+
+  .patch(async (req, res) => {
+    const { name, username } = req.body;
+
+    await User.findOneAndUpdate({ id: req.params.id }, { name, username });
   });
 
 app.get("/favicon.ico", function (req, res) {
