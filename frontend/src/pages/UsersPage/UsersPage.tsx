@@ -4,10 +4,6 @@ import { motion } from 'framer-motion';
 
 import { Link } from 'react-router-dom';
 
-import { Tooltip } from '@mui/material';
-
-import { MdOutlineRefresh } from 'react-icons/md';
-
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useUsers } from '../../hooks';
 
@@ -17,7 +13,6 @@ import {
   AddModal,
   DeleteModal,
   EditModal,
-  ResetModal,
   UserFilter,
   UserList,
 } from '../../components';
@@ -48,7 +43,6 @@ export const UsersPage = (): JSX.Element => {
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [isReseting, setIsReseting] = useState<boolean>(false);
   const [id, setId] = useState('0');
   const [filter, setFilter] = useState<IFilter>({ query: '', sort: '' });
   const sortedAndSearched = useUsers(users, filter.query, filter.sort);
@@ -59,10 +53,6 @@ export const UsersPage = (): JSX.Element => {
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, query: e.target.value });
-  };
-
-  const handleResetClick = () => {
-    setIsReseting(true);
   };
 
   const showAddModal = () => {
@@ -95,11 +85,6 @@ export const UsersPage = (): JSX.Element => {
       <Link to="/users-list">
         <button className="nav-button prevpage"></button>
       </Link>
-      <Tooltip title="Reset changes in user list" placement="top">
-        <button className="nav-button reset" onClick={handleResetClick}>
-          <MdOutlineRefresh />
-        </button>
-      </Tooltip>
 
       {isAdding && <AddModal setIsAdding={setIsAdding} />}
       {isEditing && (
@@ -111,7 +96,6 @@ export const UsersPage = (): JSX.Element => {
         />
       )}
       {isDeleting && <DeleteModal id={id} setIsDeleting={setIsDeleting} />}
-      {isReseting && <ResetModal setIsReseting={setIsReseting} />}
     </div>
   );
 };

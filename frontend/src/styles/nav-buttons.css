@@ -63,20 +63,6 @@
   transform: rotate(225deg);
 }
 
-.reset {
-  position: fixed;
-  bottom: 30px;
-  right: 65px;
-  color: #6e6d6d;
-  font-size: 40px;
-  width: 1.6em;
-  height: 1.6em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.3s;
-}
-
 @media (max-width: 1650px) {
   .userspage {
     width: 1100px;
@@ -84,10 +70,6 @@
 
   .prevpage {
     left: 20px;
-  }
-
-  .reset {
-    right: 20px;
   }
 }
 @media (max-width: 1450px) {
@@ -97,10 +79,6 @@
 
   .prevpage {
     left: 10px;
-  }
-
-  .reset {
-    right: 20px;
   }
 }
 
