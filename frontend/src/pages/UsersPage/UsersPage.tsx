@@ -54,7 +54,7 @@ export const UsersPage = (): JSX.Element => {
   const sortedAndSearched = useUsers(users, filter.query, filter.sort);
 
   useEffect(() => {
-    dispatch(usersActions.init());
+    dispatch(usersActions.getUsers());
   }, []);
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {

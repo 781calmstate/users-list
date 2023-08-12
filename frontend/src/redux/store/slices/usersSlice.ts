@@ -61,22 +61,19 @@ export const usersSlice = createSlice({
         (a: IUser, b: IUser) => Number(a.id) - Number(b.id)
       );
     },
-    getUsers: (state, action: PayloadAction<IUser[]>) => {
-      state.users = action.payload;
-    },
   },
   extraReducers: (builder) => {
-    builder.addCase(init.fulfilled, (state, action) => {
+    builder.addCase(getUsers.fulfilled, (state, action) => {
       state.users = action.payload;
     });
   },
 });
 
-export const { remove, add, edit, resetFilters, getUsers } = usersSlice.actions;
+export const { remove, add, edit, resetFilters } = usersSlice.actions;
 
 export default usersSlice.reducer;
 
-export const init = createAsyncThunk('users/fetch', async () => {
+export const getUsers = createAsyncThunk('users/fetch', async () => {
   const response = await fetch('http://localhost:4000/users');
   const data = await response.json();
   return data;

@@ -14,7 +14,7 @@ export const ResetModal = ({
   const dispatch = useAppDispatch();
 
   const handleReset = () => {
-    dispatch(userActions.init());
+    dispatch(userActions.getUsers());
     setIsReseting(false);
   };
   return (
