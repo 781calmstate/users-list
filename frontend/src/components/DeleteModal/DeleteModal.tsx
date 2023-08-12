@@ -27,7 +27,7 @@ export const DeleteModal = ({
   }
 
   const handleDelete = () => {
-    dispatch(usersActions.toggle(currentUser));
+    dispatch(usersActions.remove(currentUser));
 
     setIsDeleting(false);
   };

@@ -11,15 +11,39 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.route("/users").get(async (req, res) => {
-  const foundUsers = await User.find();
+app.use(bodyParser.json());
 
-  if (foundUsers.length) {
-    res.send(foundUsers);
-  } else {
-    res.send("Cannot find any users.");
-  }
-});
+app
+  .route("/users")
+
+  .get(async (req, res) => {
+    const foundUsers = await User.find();
+
+    if (foundUsers.length) {
+      res.send(foundUsers);
+    } else {
+      res.send("Cannot find any users.");
+    }
+  })
+
+  .post(async (req, res) => {
+    const newUser = new User(req.body);
+
+    await newUser.save();
+  });
+
+app
+  .route("/users/:id")
+
+  .get(async (req, res) => {
+    const foundUser = await User.findOne({
+      id: req.params.id,
+    });
+  })
+
+  .delete(async (req, res) => {
+    await User.findOneAndDelete({ id: req.params.id });
+  });
 
 app.get("/favicon.ico", function (req, res) {
   res.sendStatus(204);

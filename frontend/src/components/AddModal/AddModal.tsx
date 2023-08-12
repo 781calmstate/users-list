@@ -49,7 +49,7 @@ export const AddModal = ({ setIsAdding }: TAddModalProps): JSX.Element => {
         address: { city: 'London' },
       };
 
-      dispatch(usersActions.toggle(customUser));
+      dispatch(usersActions.add(customUser));
     }
     setNewUser(INITIAL_USER);
 

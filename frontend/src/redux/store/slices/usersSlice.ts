@@ -15,20 +15,26 @@ export const usersSlice = createSlice({
   name: 'usersSlice',
   initialState,
   reducers: {
-    toggle: (state, action: PayloadAction<IUser>) => {
-      const isExist = state.users.find(
-        (user: IUser) => Number(user.id) === Number(action.payload.id)
+    remove: (state, action: PayloadAction<IUser>) => {
+      state.users = state.users.filter(
+        (user) => Number(user.id) !== Number(action.payload.id)
       );
 
-      if (isExist) {
-        state.users = state.users.filter(
-          (user) => Number(user.id) !== Number(action.payload.id)
-        );
-      } else {
-        state.users.push(action.payload);
-      }
+      fetch(`http://localhost:4000/users/${action.payload.id}`, {
+        method: 'DELETE',
+      });
+    },
+    add: (state, action: PayloadAction<IUser>) => {
+      state.users.push(action.payload);
 
-      localStorage.setItem('usersData', JSON.stringify(state.users));
+      fetch('http://localhost:4000/users', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(action.payload),
+      });
     },
     edit: (state, action: PayloadAction<IUser>) => {
       state.users = state.users.map((user: IUser) => {
@@ -40,7 +46,6 @@ export const usersSlice = createSlice({
             }
           : user;
       });
-      localStorage.setItem('usersData', JSON.stringify(state.users));
     },
     resetFilters: (state) => {
       state.users = state.users.sort(
@@ -58,7 +63,7 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { toggle, edit, resetFilters, getUsers } = usersSlice.actions;
+export const { remove, add, edit, resetFilters, getUsers } = usersSlice.actions;
 
 export default usersSlice.reducer;
 
